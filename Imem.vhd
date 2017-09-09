@@ -30,26 +30,27 @@ entity Imem is
 	);
 end Imem;
 
- architecture Behavioral of Imem is
+architecture Behavioral of Imem is
 		subtype quadbyte_t is std_logic_vector(31 downto 0);
 		type imemory_t is array(0 to 31) of quadbyte_t;
 begin
-	process(addr)
-	variable memory:imemory_t:=(others=>(others=>'0'));--nullen in steken 
-		variable A : integer := 0;
-	
+	memproc:process(clk)
+		variable memory:imemory_t:=(others=>(others=>'0'));--nullen in steken 
 	begin
-	
 		if (rising_edge(clk)) then
-				memory(0):=X"201100c8";
-				memory(1):=X"20120037";	
-				memory(2):=X"02519820";			
-				instruction<=memory(to_integer(unsigned(addr(31 downto 2))));--signaal<= enkel laatse waarde komt erdoor
-				
-			end if;
+			memory(0):=X"22730008";
+			memory(1):=X"22730008";
+			memory(2):=X"ac130080";			--variabel := waarde direct toegeschreven
+			memory(3):=X"ac130080";	
+			memory(4):=X"227300f1";
+			memory(5):=X"227300f1";
+			memory(6):=X"ac130080";
+			memory(7):=X"ac130080";
+			--memory(7):=X"ac130080";
+			instruction<=memory(to_integer(unsigned(addr(31 downto 2))));--signaal<= enkel laatse waarde komt erdoor
+		end if;
 		
-	end process ;
-	
+	end process memproc;
 
 end Behavioral;
 

@@ -46,21 +46,17 @@ end datamem;
 architecture Behavioral of datamem is
 
 begin
-
 	dataMEM: process(clk)
-	
 		type ramType is array (127 downto 0 ) of std_logic_vector(31 downto 0 ); --128 bytes
 		variable ram: ramType := (others=> (others=>'0')); --alles op nul		
 		begin
-		selectormux<='0';	
 			if(rising_edge(clk)) then 
 				if(to_integer(unsigned(AdressIn))< 128) then
-					
+				selectormux<='1';	
 					if (memwriteIn='1') then
 						ram(to_integer(unsigned(AdressIn))):= writeDataIn;
 					elsif(memreadIn ='1') then
 						readDataOUT <= ram(to_integer(unsigned(AdressIn)));
-						selectormux<='1';
 					end if;
 					
 				ELSE

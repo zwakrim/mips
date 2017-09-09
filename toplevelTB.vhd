@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   20:27:38 01/30/2017
+-- Create Date:   11:54:30 01/03/2017
 -- Design Name:   
--- Module Name:   /home/zwakrim/Documents/computerarch/mipsZwakrim/testMips.vhd
--- Project Name:  mipsZwakrim
+-- Module Name:   /home/zwakrim/Documents/computerarch/mips/toplevelTB.vhd
+-- Project Name:  mips
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: TopLevelMips
+-- VHDL Test Bench Created by ISE for module: MIPSTopLevel
 -- 
 -- Dependencies:
 -- 
@@ -32,19 +32,18 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY testMips IS
-END testMips;
+ENTITY toplevelTB IS
+END toplevelTB;
  
-ARCHITECTURE behavior OF testMips IS 
+ARCHITECTURE behavior OF toplevelTB IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT TopLevelMips
+    COMPONENT MIPSTopLevel
     PORT(
          clk : IN  std_logic;
          reset : IN  std_logic;
-         regdstin : OUT  std_logic;
-         input : IN  std_logic_vector(31 downto 0)
+         WriteData : INOUT  std_logic_vector(31 downto 0)
         );
     END COMPONENT;
     
@@ -52,22 +51,20 @@ ARCHITECTURE behavior OF testMips IS
    --Inputs
    signal clk : std_logic := '0';
    signal reset : std_logic := '0';
-   signal input : std_logic_vector(31 downto 0) := (others => '0');
 
- 	--Outputs
-   signal regdstin : std_logic;
+	--BiDirs
+   signal WriteData : std_logic_vector(31 downto 0);
 
    -- Clock period definitions
-   constant clk_period : time := 20 ns;
+   constant clk_period : time := 10 ns;
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: TopLevelMips PORT MAP (
+   uut: MIPSTopLevel PORT MAP (
           clk => clk,
           reset => reset,
-          regdstin => regdstin,
-          input => input
+          WriteData => WriteData
         );
 
    -- Clock process definitions
@@ -84,15 +81,13 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
+		reset <= '1';
       wait for 100 ns;	
-
-      wait for clk_period*100;
-
-       wait for clk_period*100;
-		reset <='1';
-		wait for clk_period*100;
-		reset <='0';
-		input<= X"00000000";
+		reset <= '0';
+		wait for 100 ns;	
+      -- insert stimulus here 	
+		wait for 100ns;
+		reset <= '0';		
       wait;
    end process;
 

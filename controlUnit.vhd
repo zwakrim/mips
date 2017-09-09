@@ -42,7 +42,8 @@ entity controlUnit is
 			MemWrite : out  STD_LOGIC;
 			ALUSrc : out  STD_LOGIC;
 			RegWrite : out  STD_LOGIC;
-			jump: out std_logic
+			jump: out std_logic;
+			clk: in STD_logic
 			);
 end controlUnit;
 
@@ -50,9 +51,9 @@ architecture Behavioral of controlUnit is
 
 begin
 
-	aluOutputs: process(Instruction)
+	aluOutputs: process(clk,Instruction)
 		begin
-		--if(rising_edge(clk)) then
+		if(rising_edge(clk)) then
 			 case Instruction is
 			
 				when "000000" => --r_format
@@ -140,9 +141,8 @@ begin
 					RegWrite <= '0';
 					jump		<= '0';		
 					ALUOp    <= "00";
-					
 			  end case;
-			--end if;
+			end if;
 		end process aluOutputs;
 end Behavioral;
 

@@ -48,11 +48,11 @@ begin
 			if (pc_reset='1') then
 				pc_out<=(others=>'0');
 			else
---				if (pc_in=X"00000080") then
---					pc_out<=X"00000000";
---				else
+				if (pc_in=X"00000080") then
+					pc_out<=X"00000000";
+				else
 					pc_out<=pc_in;
-				--end if;	
+				end if;	
 			end if;
 		end if;
 	end process setpc;

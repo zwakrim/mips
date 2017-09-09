@@ -20,7 +20,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
---use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -35,6 +35,7 @@ entity aluAdder is
 	Port ( 
 		input1: in  STD_LOGIC_VECTOR (31 downto 0);
 		input2 :in  STD_LOGIC_VECTOR (31 downto 0);
+		Clk : in  STD_LOGIC;
 		result : out  STD_LOGIC_VECTOR (31 downto 0));
 end aluAdder;
 
@@ -42,6 +43,6 @@ architecture Behavioral of aluAdder is
 
 begin
 
-	result <= std_logic_vector(unsigned(input1) + unsigned(input2));
+	result <= input1 + input2;
 end Behavioral;
 

@@ -47,24 +47,20 @@ architecture Behavioral of RegisterFile is
 	signal registerfile:memory_t;	
 begin
 --------------------------------------------------------------------------------------------
-	reg_Write:process(clk,RegWrite,Write_Register,write_data)	
-	variable op_delay : integer := 0;
+	reg_Write:process(clk)	
 	begin	
-	registerfile(0)<=(others=>'0');
-		if (rising_edge(clk)) then		
+		if (rising_edge(clk)) then
+			registerfile(0)<=(others=>'0');
+			registerfile(19)<=(others=>'0');
 			if (RegWrite='1') then
-			
 				registerfile(conv_integer(Write_Register))<=write_data;	
 			end if;	
 		end if;		
 	end process reg_write;
 --------------------------------------------------------------------------------------------
-	reg_Read:process(clk,Read_Register_1,Read_Register_2)	
-	variable op_delay : integer := 0;
+	reg_Read:process(clk)	
 	begin			
-	if (rising_edge(Clk)) then		
 		read_data_1<=registerfile(conv_integer(Read_Register_1));
-			read_data_2<=registerfile(conv_integer(Read_Register_2));	
-		end if;			
+		read_data_2<=registerfile(conv_integer(Read_Register_2));		
 	end process reg_Read;
 end Behavioral;

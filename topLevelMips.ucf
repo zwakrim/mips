@@ -1,0 +1,10 @@
+NET "clk" LOC=L15;
+NET "reset" LOC=P4;
+NET "led0" LOC=U18;
+NET "led1" LOC=M14;
+NET "led2" LOC=N14;
+NET "led3" LOC=L14;
+NET "led4" LOC=M13;
+NET "led5" LOC=D4;
+NET "led6" LOC=P16;
+NET "led7" LOC=N12; 

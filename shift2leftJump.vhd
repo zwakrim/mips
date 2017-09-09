@@ -1,42 +1,42 @@
---,=-----------------------------------------------%-----­---/----%-------------)
+----------------------------------------------------------------------------------
 -- Company: 
 -- Engineer: 
 -- 
--- Create Faue*    06850:36 01/03/20q7 
--- D%sign Name: 
--- Module Namm:    shift2leftJu}p - Behavioral 
---$Project Jame: 
+-- Create Date:    06:50:36 01/03/2017 
+-- Design Name: 
+-- Module Name:    shift2leftJump - Behavioral 
+-- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
 -- Description: 
 --
 -- Dependencies: 
 --
--- ReviSion: 
---`Revision 0.01 - File Created
+-- Revision: 
+-- Revision 0.01 - File Created
 -- Additional Comments: 
 --
-)------------------------------------------,--------m-----------------%---------
-lirrapy IEEE;
-use IEEE.STF_LOGIC_1164.ALÌ;
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncommen| the following mibrary declarition ig uskng
--m arithmeti# functions0with Signed or Unsk'ned values
---use IEEU.NUMERIC_STD.ALl;
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
 
--- Uncommenu d`e vohlow)ng library declaration if instantiaténg
+-- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
---library UNISIÍ;
---qqe UNISIM.VComponentc.all;
+--library UNISIM;
+--use UNISIM.VComponents.all;
 
-entity(shift2leftJump is
+entity shift2leftJump is
 	generic(
-			N: INTEGER	z=2;
-‰		widtH: INTEGER *=2
+			N: INTEGER	:=2;
+			width: INTEGER :=26
 		); 
 		port(
-			Input:	IN		ST@_LOGHC_VECTOR(width-1 downto 0);-- 25  downto0 
-			utput:	OU\	STL_LOGIC_VECTOr(r7 downpo 0) 
+			Input:	IN		STD_LOGIC_VECTOR(width-1 downto 0);-- 25  downto0 
+			Output:	OUT	STD_LOGIC_VECTOR(27 downto 0) 
 			);
 end shift2leftJump;
 

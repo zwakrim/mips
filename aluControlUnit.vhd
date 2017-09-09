@@ -33,17 +33,20 @@ entity aluControlUnit is
 	port(
 		ALUop: IN std_logic_vector(1 downto 0);
 		instruction: IN std_logic_vector(5 downto 0);
-		AluControlOut: OUT std_logic_vector(4 downto 0)
+		AluControlOut: OUT std_logic_vector(4 downto 0);
+		clk: in std_logic
 	);
 end aluControlUnit;
 
 architecture Behavioral of aluControlUnit is
 
 begin
-	aluoutprocces:process(ALUop,instruction)
+	aluoutprocces:process(clk,ALUop,instruction)
 		begin
+		if(rising_edge(clk)) then	
 			if (ALUop = "10") then -- rtype 
-				case instruction is				
+				case instruction is
+				
 					when "100000" =>
 						AluControlOut <= "00000"; --add
 -----------------------------------------------------------------------------------						
@@ -103,7 +106,7 @@ begin
 			elsif (ALUop = "00") then  -- sw lw substract 
 				AluControlOut <= "00000"; -- then add 
 			end if;
-		
+		end if;
 		end process aluoutprocces;
 end Behavioral;
 

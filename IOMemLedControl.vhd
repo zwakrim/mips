@@ -50,29 +50,27 @@ port(
 end IOMemLedControl;
 
 architecture Behavioral of IOMemLedControl is
-
+signal leds: std_logic_vector(7 downto 0);
 begin
-
 	dataLed: process(clk)
 		type ramType is array (1 downto 0 ) of std_logic_vector(31 downto 0 ); --128 bytes
 		variable ram: ramType := (others=> (others=>'0')); --alles op nul		
 		 
 		begin
-			selectormux<='0';	
 			if(rising_edge(clk)) then 
 				if(to_integer(unsigned(AdressIn))= 128) then
 					selectormux<='0';	
 					if (memwriteIn='1') then
 						ram(128- to_integer(unsigned(AdressIn))):= writeDataIn;						
 						if (to_integer(unsigned(writeDataIn))<256) then
-							led0<=writeDataIn(0);
-							led1<=writeDataIn(1);
-							led2<=writeDataIn(2);
-							led3<=writeDataIn(3);
-							led4<=writeDataIn(4);
-							led5<=writeDataIn(5);
-							led6<=writeDataIn(6);
-							led7<=writeDataIn(7);			
+							leds(0)<=writeDataIn(0);
+							leds(1)<=writeDataIn(1);
+							leds(2)<=writeDataIn(2);
+							leds(3)<=writeDataIn(3);
+							leds(4)<=writeDataIn(4);
+							leds(5)<=writeDataIn(5);
+							leds(6)<=writeDataIn(6);
+							leds(7)<=writeDataIn(7);			
 						end if;
 					elsif(memreadIn ='1') then
 						readDataOUT <= ram(128-to_integer(unsigned(AdressIn)));
@@ -81,6 +79,14 @@ begin
 				end if;
 			end if;
 	end process ;
+			led0 <= leds(0);
+			led1 <= leds(1);
+			led2 <= leds(2);
+			led3 <= leds(3);
+			led4 <= leds(4);
+			led5 <= leds(5);
+			led6 <= leds(6);
+			led7 <= leds(7);
 
 end Behavioral;
 

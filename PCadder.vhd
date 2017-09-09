@@ -32,7 +32,7 @@ end PCadder;
 architecture Behavioral of PCadder is
 
 begin
-	add4:process(clk,PCin)	
+	add4:process(clk)	
 	begin
 		if (rising_edge(clk)) then	 
 		PCout<=std_logic_vector(to_unsigned(to_integer(unsigned( pcin)) + 4, 32));

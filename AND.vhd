@@ -29,18 +29,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity ANDP is
-	port( 
+entity AND is
+	port(
 		zeroInput: in std_logic;
 		branchInput: in std_logic;
 		AndOut: out std_logic		
 		);
-end ANDP
+end AND;
 
-architecture Behavioral of ANDP is
+architecture Behavioral of AND is
 
 begin
-	andOut<= zeroIn and branchIN;
-	
+
+
 end Behavioral;
 
